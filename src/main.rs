@@ -2,11 +2,9 @@ use std::fs::File;
 use std::io::Write;
 use tera::Tera;
 use tera::Context;
-use std::string;
 use clap::{Arg, Command};
 
 fn main() -> std::io::Result<()> {
-    // fn main(){
     //get input from user
     // 1. the input consist off:
     // - domain name
@@ -46,7 +44,7 @@ fn main() -> std::io::Result<()> {
                  .help("source template defaulted to default.conf"))
         .get_matches();
 
-    // let target_dir: Option<&String> = matches.get_one("file").unwrap().to_string();
+    //get and set flag to variable (will changed soon)
     let target_dir_flag: Option<&String> = matches.get_one("target_dir");
     let target_dir = &target_dir_flag.unwrap().to_string();
     let domain_flag: Option<&String> = matches.get_one("domain");
@@ -67,13 +65,11 @@ fn main() -> std::io::Result<()> {
     let mut context = Context::new();
     context.insert("domain",&domain);
     context.insert("backend", &backend);
-    let panji = tera.render("nginx.conf.tpl", &context).unwrap();
+    let config = tera.render("nginx.conf.tpl", &context).unwrap();
 
-    // println!("{}", tera.render("hello", &context).unwrap());
-    // let panji = tera.render("hello", &context).unwrap();
     // write result to file
     let new_file = format!("{} {}", &target_dir, &file_name);
     let mut f = File::create(new_file)?;
-    f.write_all(&panji.as_bytes())?;
+    f.write_all(&config.as_bytes())?;
     Ok(())
 }
