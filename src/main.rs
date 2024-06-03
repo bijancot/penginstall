@@ -19,8 +19,8 @@ fn main() -> std::io::Result<()> {
 
     let matches = Command::new("Penginstall; nginx config generator based on rust")
         .version("0.0.5b")
-        .author("Hackerman Jones <hckrmnjones@hack.gov>")
-        .about("Teaches argument parsing")
+        .author("Panji Iman Baskoro <panjidia995@gmail.com>")
+        .about("A simple ")
         .help_template("\
         {before-help}{name} {version}
     {author-with-newline}{about-with-newline}
