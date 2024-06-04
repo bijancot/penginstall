@@ -1,7 +1,6 @@
 use std::fs::File;
 use std::io::Write;
-use tera::Tera;
-use tera::Context;
+use tera::{Tera, Context};
 use clap::{Arg, Command};
 
 fn main() -> std::io::Result<()> {
